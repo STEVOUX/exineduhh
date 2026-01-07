@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTA 6 Countdown – EXINE</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Live GTA 6 Release Countdown – Auto Updated" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* ---------- BACKGROUND ---------- */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: url("https://res.cloudinary.com/dyiztuod3/image/upload/v1767797153/Jason_and_Lucia_02_With_Logos_landscape.93ab5523_gbe0m4.jpg")
+        center / cover no-repeat;
+      filter: brightness(0.55);
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 60%),
+        rgba(0,0,0,0.55);
+      z-index: -1;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      gap: 22px;
+    }
+
+    .logo {
+      max-width: 520px;
+      width: 90%;
+      mix-blend-mode: screen;
+      filter:
+        drop-shadow(0 0 30px rgba(255,120,200,0.35))
+        drop-shadow(0 0 60px rgba(120,120,255,0.25));
+    }
+
+    h1 {
+      font-size: 34px;
+      font-weight: 700;
+    }
+
+    .release {
+      font-size: 15px;
+      opacity: 0.85;
+    }
+
+    .source {
+      font-size: 12px;
+      opacity: 0.5;
+      margin-top: -6px;
+    }
+
+    /* ---------- COUNTDOWN ---------- */
+    .countdown {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .time-box {
+      min-width: 110px;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(14px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+      transition: 0.35s;
+    }
+
+    .time-box:hover {
+      transform: translateY(-4px) scale(1.06);
+      box-shadow:
+        0 0 40px rgba(255,100,200,0.35),
+        0 0 70px rgba(120,120,255,0.3);
+    }
+
+    .num {
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .label {
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 26px; }
+      .num { font-size: 30px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<div class="wrap">
+
+  <img class="logo"
+    src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767797787/4k-GTA-6-Logo-4K-Wallpaper-removebg-preview_a6xf7o.png"
+    alt="GTA 6 Logo">
+
+  <h1>Live GTA 6 Countdown</h1>
+  <div class="release" id="releaseText">Fetching official release date…</div>
+
+  <div class="countdown">
+    <div class="time-box"><div class="num" id="days">–</div><div class="label">Days</div></div>
+    <div class="time-box"><div class="num" id="hours">–</div><div class="label">Hours</div></div>
+    <div class="time-box"><div class="num" id="minutes">–</div><div class="label">Minutes</div></div>
+    <div class="time-box"><div class="num" id="seconds">–</div><div class="label">Seconds</div></div>
+  </div>
+
+</div>
+
+<script>
+  let releaseDate = null;
+
+  async function fetchReleaseDate() {
+    try {
+      const res = await fetch(
+        "https://en.wikipedia.org/api/rest_v1/page/summary/Grand_Theft_Auto_VI"
+      );
+      const data = await res.json();
+
+      // Try to extract date (best effort)
+      const match = data.extract.match(/(\d{1,2}\s\w+\s\d{4})/);
+      if (match) {
+        releaseDate = new Date(match[1] + " 00:00:00 UTC").getTime();
+        document.getElementById("releaseText").textContent =
+          "Official Release Date: " + match[1];
+      } else {
+        throw "Date not found";
+      }
+    } catch {
+      // Fallback (OFFICIAL CURRENT DATE)
+      releaseDate = new Date("2026-11-19T00:00:00Z").getTime();
+      document.getElementById("releaseText").textContent =
+        "Official Release Date: 19 November 2026";
+    }
+  }
+
+  function startCountdown() {
+    setInterval(() => {
+      if (!releaseDate) return;
+
+      const diff = releaseDate - Date.now();
+      if (diff <= 0) return;
+
+      document.getElementById("days").textContent =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").textContent =
+        Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").textContent =
+        Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("seconds").textContent =
+        Math.floor((diff / 1000) % 60);
+    }, 1000);
+  }
+
+  fetchReleaseDate().then(startCountdown);
+</script>
+
+</body>
+</html>
