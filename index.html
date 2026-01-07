@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EXINE</title>
+
+  <!-- SEO -->
+  <meta name="description" content="EXINE – Games, Softwares, Tools, Mods & More" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://res.cloudinary.com/dyiztuod3/image/upload/v1767795850/1000324368_ws41is.webp">
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/dyiztuod3/image/upload/v1767795850/1000324368_ws41is.webp">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ---------- VIDEO BACKGROUND ---------- */
+    .video-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+    }
+
+    .video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.45) blur(1px);
+    }
+
+    .video-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(0,0,0,0.25), #000 75%);
+      z-index: -1;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 40px 20px 28px;
+    }
+
+    .main-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(255,255,255,0.18);
+    }
+
+    .main-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .verified {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ---------- SOCIAL ICONS ---------- */
+    .socials {
+      display: flex;
+      gap: 18px;
+      margin-top: 6px;
+    }
+
+    .socials a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .socials img {
+      width: 22px;
+      height: 22px;
+      opacity: 0.9;
+    }
+
+    .socials a:hover {
+      transform: translateY(-3px) scale(1.1);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 12px rgba(255,255,255,0.25);
+    }
+
+    /* ---------- CONTAINER ---------- */
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ---------- CARDS ---------- */
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: translateX(-100%);
+      transition: 0.5s;
+    }
+
+    .card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .card:hover {
+      transform: translateY(-4px) scale(1.01);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+    }
+
+    .icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
+    }
+
+    .title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 22px;
+      }
+      .main-logo {
+        width: 78px;
+        height: 78px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="https://res.cloudinary.com/dyiztuod3/video/upload/v1767791662/0107_dpc1p0.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="main-logo">
+      <img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767795850/1000324368_ws41is.webp">
+    </div>
+
+    <div class="title-row">
+      <h1>EXINE IS LIVE</h1>
+      <img class="verified" src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767795434/pngtree-instagram-bule-tick-insta-blue-star-vector-png-image_6695210_incxwg.png">
+    </div>
+
+    <div class="socials">
+      <a href="YOUR_DISCORD_LINK" target="_blank">
+        <img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767796349/discord-white-icon_qiujiw.webp">
+      </a>
+      <a href="YOUR_YOUTUBE_LINK" target="_blank">
+        <img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767796415/youtube-app-white-icon_ydbzi8.webp">
+      </a>
+      <a href="YOUR_WHATSAPP_LINK" target="_blank">
+        <img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767796421/whatsapp_ugroue.png">
+      </a>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="container">
+
+    <a href="games.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767793177/b7a70d5895e3a467268f66c9571d42e0-removebg-preview_s6frcn.png"></div><div class="title">GAMES</div></a>
+    <a href="software.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767793564/adobe-after-effect-logo-icon-free-vector-removebg-preview_ltuscu.png"></div><div class="title">SOFTWARE</div></a>
+    <a href="tools.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767794351/a-black-silhouette-of-a-wrench-and-hammer-crossed-over-each-other-signifies-tools-or-maintenance-cutouts-png_xvlru4.png"></div><div class="title">TOOLS</div></a>
+    <a href="mods.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767793119/806def5b-177a-4249-a39e-422e00a54d84-removebg-preview_pgwril.png"></div><div class="title">MODS</div></a>
+    <a href="websites.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767793563/png-clipart-logo-information-library-business-information-miscellaneous-blue-thumbnail-removebg-preview_jzfdtt.png"></div><div class="title">WEBSITES</div></a>
+    <a href="live-wallpapers.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767793119/lively-wallpaper-removebg-preview_kzowrx.png"></div><div class="title">LIVE WALLPAPERS</div></a>
+    <a href="products.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767793118/kerala-indianovember-12-2023amazon-delivery-600nw-2399823647-removebg-preview_gvkbpc.png"></div><div class="title">PRODUCTS</div></a>
+    <a href="gta6.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767793119/the-official-logo-v0-7pje1gl91d4c1-removebg-preview_ad2hpa.png"></div><div class="title">GTA 6 COUNTDOWN</div></a>
+    <a href="socials.html" class="card"><div class="icon"><img src="https://res.cloudinary.com/dyiztuod3/image/upload/v1767794073/vecteezy_instagram-logo-png-instagram-icon-transparent_18930415_tpnacw.png"></div><div class="title">SOCIALS</div></a>
+
+  </main>
+
+  <footer>© 2026 EXINE IS LIVE</footer>
+
+</body>
+</html>
