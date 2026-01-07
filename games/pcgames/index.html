@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PC GAMES</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#000;color:#fff;overflow-x:hidden}
+
+/* BG VIDEO */
+.video-bg{position:fixed;inset:0;z-index:-2}
+.video-bg video{width:100%;height:100%;object-fit:cover;filter:brightness(.35)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:-1}
+
+/* HEADER */
+header{text-align:center;padding:40px 20px}
+header h1{font-size:30px}
+header p{opacity:.7;font-size:14px}
+
+/* CONTAINER */
+.container{max-width:900px;margin:auto;padding:20px;display:flex;flex-direction:column;gap:26px}
+
+/* GAME CARD */
+.game-card{
+display:flex;gap:20px;
+padding:22px;border-radius:20px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(14px);
+box-shadow:0 0 45px rgba(150,100,255,.35);
+transition:.3s
+}
+.game-card:hover{transform:scale(1.02)}
+
+.game-cover{
+width:140px;height:190px;
+border-radius:14px;
+overflow:hidden;
+background:#111;
+flex-shrink:0
+}
+.game-cover img{width:100%;height:100%;object-fit:cover}
+
+.game-info{display:flex;flex-direction:column;gap:8px}
+.game-title{font-size:22px;font-weight:700}
+.game-meta{font-size:13px;opacity:.75}
+.game-desc{font-size:14px;line-height:1.45;max-width:520px}
+
+/* GOOD DOWNLOAD BUTTON */
+.download-btn{
+margin-top:12px;
+padding:10px 26px;
+border-radius:999px;
+background:linear-gradient(135deg,#8b5cf6,#ec4899);
+color:#1a002b;
+font-weight:700;
+font-size:13px;
+letter-spacing:.6px;
+text-transform:uppercase;
+box-shadow:
+  0 0 18px rgba(139,92,246,.8),
+  0 0 35px rgba(236,72,153,.6);
+transition:all .25s ease;
+display:inline-block;
+}
+
+.download-btn:hover{
+transform:scale(1.08);
+box-shadow:
+  0 0 28px rgba(139,92,246,1),
+  0 0 55px rgba(236,72,153,1);
+}
+
+
+footer{text-align:center;padding:30px;font-size:12px;opacity:.5}
+
+@media(max-width:700px){
+.game-card{flex-direction:column;align-items:center;text-align:center}
+.game-desc{max-width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<div class="video-bg">
+<video autoplay muted loop playsinline>
+<source src="https://res.cloudinary.com/dyiztuod3/video/upload/v1767801570/Football_in_slow_motion_-_social_media_video_ad_-_stock_video_u9zznf.mp4">
+</video>
+</div>
+<div class="overlay"></div>
+
+<header>
+<h1>PC GAMES</h1>
+<p>DOWNLOAD YOUR FAVORITE AVAILABLE GAMES REQUEST NEW GAMES THROUGH DISCORD OR INSTA</p>
+</header>
+
+<main class="container">
+
+<!-- ================= AUTO GAME (PEAK – CORRECT ONE) ================= -->
+<div class="game-card"
+     data-slug="peak-3"
+     data-download="https://your-peak-download-link">
+
+  <div class="game-cover"><img></div>
+
+  <div class="game-info">
+    <div class="game-title">Loading…</div>
+    <div class="game-meta">Loading…</div>
+    <div class="game-desc">Fetching details…</div>
+    <a class="download-btn" target="_blank">DOWNLOAD</a>
+  </div>
+</div>
+
+<!-- ================= AUTO GAME (GTA V) ================= -->
+<div class="game-card"
+     data-slug="grand-theft-auto-v"
+     data-download="https://your-gta5-download-link">
+
+  <div class="game-cover"><img></div>
+
+  <div class="game-info">
+    <div class="game-title">Loading…</div>
+    <div class="game-meta">Loading…</div>
+    <div class="game-desc">Fetching details…</div>
+    <a class="download-btn" target="_blank">DOWNLOAD</a>
+  </div>
+</div>
+
+</main>
+
+<footer>© 2026 EXINE • PC Games</footer>
+
+<script>
+const API_KEY = "3953baf4949b427b8f905bddbda576ab";
+
+document.querySelectorAll(".game-card").forEach(async card=>{
+  const slug = card.dataset.slug;
+  const downloadLink = card.dataset.download;
+
+  const img = card.querySelector("img");
+  const title = card.querySelector(".game-title");
+  const meta = card.querySelector(".game-meta");
+  const desc = card.querySelector(".game-desc");
+  const btn = card.querySelector(".download-btn");
+
+  btn.href = downloadLink || "#";
+
+  try{
+    const res = await fetch(`https://api.rawg.io/api/games/${slug}?key=${API_KEY}`);
+    if(!res.ok) throw 0;
+    const g = await res.json();
+
+    img.src = g.background_image;
+    title.textContent = g.name;
+    meta.textContent = `Release: ${g.released || "TBA"} • Rating: ${g.rating}`;
+    desc.textContent = g.description_raw.slice(0,220)+"…";
+  }catch{
+    title.textContent = "Details unavailable";
+    meta.textContent = "Manual entry";
+  }
+});
+</script>
+
+</body>
+</html>
 
